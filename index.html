@@ -63,16 +63,40 @@ button,input{font:inherit}button{cursor:pointer}.shell{max-width:1180px;margin:a
 @keyframes ballFlight{0%{transform:translate(0,0) scale(1)}70%{transform:translate(125px,-130px) scale(.65)}100%{transform:translate(170px,-80px) scale(.45);opacity:0}}
 @keyframes trailFlash{0%,100%{opacity:0}20%,65%{opacity:1}}
 .swing-label,.duck-caption,.space-caption{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-weight:900;letter-spacing:.24em;font-size:11px;color:#fff;text-shadow:0 2px 8px #173b2b99;animation:captionFloat 2.2s ease-in-out infinite alternate}
-.transition-duck{background:linear-gradient(#a9ddf2 0%,#e8f6e9 62%,#8ec87a 63%,#397847 100%)}
-.duck-sun{position:absolute;right:13%;top:12%;width:45px;height:45px;border-radius:50%;background:#ffe7a0;box-shadow:0 0 28px #fff4ad99;animation:sunPulse 3s ease-in-out infinite alternate}
-.duck-cloud{position:absolute;left:-100px;top:28%;width:100px;height:24px;border-radius:40px;background:#fff9;animation:cloudPass 11s linear infinite}
-.duck-flag{position:absolute;right:18%;bottom:24%;font-size:52px;color:#f4e7b7;transform-origin:bottom;animation:flagWave .8s ease-in-out infinite alternate;z-index:2}
-.duck-bird{position:absolute;left:-80px;bottom:25%;font-size:74px;z-index:3;filter:drop-shadow(0 8px 4px #183b2a44);animation:duckWaddle 6s ease-in-out infinite}
-@keyframes duckWaddle{0%{left:-80px;transform:translateY(0) rotate(-8deg)}18%{transform:translateY(-24px) rotate(4deg)}35%{transform:translateY(0) rotate(-5deg)}60%{left:57%;transform:translateY(-12px) rotate(3deg)}82%{transform:translateY(0) rotate(-4deg)}100%{left:110%;transform:translateY(-10px) rotate(5deg)}}
-.duck-ball{position:absolute;left:42%;bottom:25%;width:17px;height:17px;border-radius:50%;background:#fff;border:1px solid #c6d0cb;box-shadow:0 2px 5px #173b2b66;animation:duckBallHop 1.7s ease-in-out infinite}
-@keyframes duckBallHop{0%,100%{transform:translateY(0)}50%{transform:translate(48px,-72px)}}
-.duck-ripple{position:absolute;left:42%;bottom:23%;width:20px;height:8px;border:2px solid #fff9;border-radius:50%;animation:ripple 1.7s ease-out infinite}
-.duck-grass{position:absolute;left:-5%;right:-5%;bottom:-34px;height:95px;border-radius:50% 50% 0 0;background:#2e6b3e;z-index:-1}
+.transition-sheep{background:linear-gradient(#a9ddf2 0%,#e8f6e9 62%,#8ec87a 63%,#397847 100%)}
+.sheep-sun{position:absolute;right:13%;top:12%;width:45px;height:45px;border-radius:50%;background:#ffe7a0;box-shadow:0 0 28px #fff4ad99;animation:sunPulse 3s ease-in-out infinite alternate}
+.sheep-cloud{position:absolute;left:-100px;top:28%;width:100px;height:24px;border-radius:40px;background:#fff9;animation:cloudPass 11s linear infinite}
+.sheep-flag{position:absolute;right:18%;bottom:24%;font-size:52px;color:#f4e7b7;transform-origin:bottom;animation:flagWave .8s ease-in-out infinite alternate;z-index:2}
+.sheep-animal{position:absolute;left:-100px;bottom:24%;font-size:82px;z-index:3;filter:drop-shadow(0 8px 4px #183b2a44);animation:sheepPrance 6.2s ease-in-out infinite}
+@keyframes sheepPrance{0%{left:-100px;transform:translateY(0) rotate(-7deg)}14%{transform:translateY(-22px) rotate(3deg)}28%{transform:translateY(0) rotate(-4deg)}42%{transform:translateY(-13px) rotate(4deg)}60%{left:54%;transform:translateY(0) rotate(-3deg)}77%{transform:translateY(-20px) rotate(4deg)}100%{left:110%;transform:translateY(0) rotate(-5deg)}}
+.sheep-ball{position:absolute;left:42%;bottom:25%;width:17px;height:17px;border-radius:50%;background:#fff;border:1px solid #c6d0cb;box-shadow:0 2px 5px #173b2b66;animation:duckBallHop 1.7s ease-in-out infinite}
+.sheep-ripple{position:absolute;left:42%;bottom:23%;width:20px;height:8px;border:2px solid #fff9;border-radius:50%;animation:ripple 1.7s ease-out infinite}
+.sheep-grass{position:absolute;left:-5%;right:-5%;bottom:-34px;height:95px;border-radius:50% 50% 0 0;background:#2e6b3e;z-index:-1}
+.sheep-caption{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-weight:900;letter-spacing:.24em;font-size:11px;color:#fff;text-shadow:0 2px 8px #173b2b99;animation:captionFloat 2.2s ease-in-out infinite alternate}
+.transition-kegstand{background:radial-gradient(ellipse at 50% 25%,#65416f 0%,#29223e 52%,#10172c 100%)}
+.keg-lights{position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 42px,#f6d36b12 44px 47px,transparent 50px 90px);animation:partyLights 2.8s linear infinite}
+@keyframes partyLights{to{background-position:180px 0}}
+.keg-star{position:absolute;color:#ffe79a;font-size:28px;animation:starTwinkle .8s ease-in-out infinite alternate}
+.keg-star-one{left:15%;top:18%}.keg-star-two{right:17%;top:25%;animation-delay:.4s}
+.keg-platform{position:absolute;left:8%;right:8%;bottom:22px;height:25px;border-radius:50%;background:#111528;box-shadow:0 0 0 2px #d5b7ed44,0 0 35px #c98bff44}
+.party-person{position:absolute;left:50%;top:18%;width:90px;height:150px;transform:translateX(-50%);animation:kegStandDip 2.2s ease-in-out infinite;z-index:3}
+.party-head{position:absolute;left:28px;top:0;width:38px;height:38px;font-size:35px;line-height:38px;text-align:center;border-radius:50%;background:#e9c4a4;transform:rotate(180deg);z-index:2}
+.party-body{position:absolute;left:24px;top:32px;width:42px;height:66px;border-radius:13px;background:linear-gradient(90deg,#e95b43,#a82f48);border:3px solid #211d30;transform:rotate(180deg)}
+.party-arm{position:absolute;top:39px;width:12px;height:61px;border-radius:9px;background:#f0c29f;transform-origin:top center}
+.party-arm-left{left:22px;transform:rotate(28deg)}.party-arm-right{left:58px;transform:rotate(-28deg)}
+.party-leg{position:absolute;top:91px;width:15px;height:59px;border-radius:10px;background:#26395a;transform-origin:top center}
+.party-leg-left{left:28px;transform:rotate(18deg)}.party-leg-right{left:49px;transform:rotate(-18deg)}
+@keyframes kegStandDip{0%,100%{transform:translate(-50%,0) rotate(-3deg)}25%{transform:translate(-50%,-9px) rotate(4deg)}50%{transform:translate(-50%,3px) rotate(-4deg)}75%{transform:translate(-50%,-5px) rotate(2deg)}}
+.party-keg{position:absolute;left:50%;bottom:39px;transform:translateX(-50%);width:116px;height:100px;border-radius:26px 26px 20px 20px;background:linear-gradient(90deg,#697b87,#d2dce0 23%,#8397a2 48%,#e2e8e9 72%,#586b78);border:3px solid #273644;box-shadow:inset 0 -12px 0 #24384744,0 12px 25px #0007;z-index:2;animation:kegWobble 1.1s ease-in-out infinite alternate}
+.keg-band{position:absolute;left:0;right:0;top:27px;height:12px;background:#263b4b;border-top:2px solid #a9b6bb;border-bottom:2px solid #a9b6bb}
+.keg-tap{position:absolute;left:51px;top:-18px;width:15px;height:23px;border-radius:5px 5px 2px 2px;background:#e5c36e;border:2px solid #384956}
+.keg-foam{position:absolute;left:25px;top:-10px;width:63px;height:18px;border-radius:50%;background:#fff0c4;box-shadow:0 0 15px #fff0c488;animation:foamFizz .55s ease-in-out infinite alternate}
+@keyframes kegWobble{from{rotate:-1deg}to{rotate:1deg}}
+@keyframes foamFizz{from{transform:scaleX(.9) translateY(0)}to{transform:scaleX(1.08) translateY(-4px)}}
+.keg-bubble{position:absolute;left:57%;bottom:31%;font-size:24px;color:#ffe9a0;animation:bubblePop 1.6s ease-out infinite}
+.bubble-two{left:38%;animation-delay:.8s}
+@keyframes bubblePop{0%{transform:translateY(20px) scale(.4);opacity:0}30%{opacity:1}100%{transform:translateY(-70px) scale(1.2);opacity:0}}
+.keg-caption{position:absolute;left:0;right:0;bottom:15px;text-align:center;color:#fff0c4;font-size:11px;font-weight:900;letter-spacing:.24em;text-shadow:0 2px 10px #000;animation:captionFloat 1.2s ease-in-out infinite alternate}
 .transition-astronaut{background:radial-gradient(circle at 75% 22%,#4b5689 0%,#20274b 36%,#10172c 100%)}
 .space-star{position:absolute;color:#fff3b0;font-size:23px;animation:starTwinkle 1.5s ease-in-out infinite alternate}
 .star-a{left:16%;top:20%}.star-b{right:22%;top:44%;animation-delay:.5s}.star-c{left:65%;top:12%;animation-delay:1s}
@@ -232,7 +256,8 @@ function showHoleTransition(index){
  const scenes=[
   {cls:'transition-spotted',label:'Spotted Cow',art:'<img class="hole-transition-image" src="IMG_2549.png" alt="Spotted Cow golf transition" />'},
   {cls:'transition-swing',label:'The Perfect Swing',art:'<div class="swing-sky"><span class="swing-sun"></span><span class="swing-cloud cloud-one"></span><span class="swing-cloud cloud-two"></span><div class="swing-hill"></div><div class="swing-hill hill-back"></div><div class="swing-golfer"><span class="golfer-head"></span><span class="golfer-body"></span><span class="golfer-arm"></span><span class="golfer-club"></span><span class="golfer-leg leg-one"></span><span class="golfer-leg leg-two"></span></div><span class="swing-ball"></span><span class="swing-trail"></span><span class="swing-label">PURE STRIKE</span></div>'},
-  {cls:'transition-duck',label:'Duck on the Green',art:'<div class="duck-scene"><span class="duck-sun"></span><span class="duck-cloud"></span><span class="duck-flag">⚑</span><span class="duck-bird">🦆</span><span class="duck-ball"></span><span class="duck-ripple"></span><div class="duck-grass"></div><span class="duck-caption">FORE! ...QUACK!</span></div>'},
+  {cls:'transition-sheep',label:'Sheep on the Green',art:'<div class="sheep-scene"><span class="sheep-sun"></span><span class="sheep-cloud"></span><span class="sheep-flag">⚑</span><span class="sheep-animal">🐑</span><span class="sheep-ball"></span><span class="sheep-ripple"></span><div class="sheep-grass"></div><span class="sheep-caption">BAAA-IRDIE!</span></div>'},
+  {cls:'transition-kegstand',label:'The 19th Hole Keg Stand',art:'<div class="keg-scene"><span class="keg-lights"></span><span class="keg-star keg-star-one">✦</span><span class="keg-star keg-star-two">✧</span><div class="keg-platform"></div><div class="party-person"><span class="party-head">😎</span><span class="party-body"></span><span class="party-arm party-arm-left"></span><span class="party-arm party-arm-right"></span><span class="party-leg party-leg-left"></span><span class="party-leg party-leg-right"></span></div><div class="party-keg"><span class="keg-band"></span><span class="keg-tap"></span><span class="keg-foam"></span></div><span class="keg-bubble bubble-one">✦</span><span class="keg-bubble bubble-two">✧</span><span class="keg-caption">THE 19TH HOLE</span></div>'},
   {cls:'transition-astronaut',label:'Out of This World',art:'<div class="space-scene"><span class="space-star star-a">✦</span><span class="space-star star-b">✧</span><span class="space-star star-c">✦</span><span class="space-planet"></span><span class="space-moon"></span><span class="space-astronaut">🧑‍🚀</span><span class="space-ball">⛳</span><span class="space-orbit"></span><span class="space-caption">AIM FOR THE GALAXY</span></div>'}
  ];
  const scene=scenes[Math.floor(Math.random()*scenes.length)];
