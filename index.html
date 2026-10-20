@@ -97,6 +97,29 @@ button,input{font:inherit}button{cursor:pointer}.shell{max-width:1180px;margin:a
 .bubble-two{left:38%;animation-delay:.8s}
 @keyframes bubblePop{0%{transform:translateY(20px) scale(.4);opacity:0}30%{opacity:1}100%{transform:translateY(-70px) scale(1.2);opacity:0}}
 .keg-caption{position:absolute;left:0;right:0;bottom:15px;text-align:center;color:#fff0c4;font-size:11px;font-weight:900;letter-spacing:.24em;text-shadow:0 2px 10px #000;animation:captionFloat 1.2s ease-in-out infinite alternate}
+.transition-kart{background:linear-gradient(#83c9e8 0%,#d7edda 58%,#8ec078 59%,#377548 100%)}
+.kart-sun{position:absolute;right:12%;top:10%;width:43px;height:43px;border-radius:50%;background:#ffe6a0;box-shadow:0 0 28px #fff0a9aa;animation:sunPulse 2.5s ease-in-out infinite alternate}
+.kart-cloud{position:absolute;top:23%;left:-110px;width:96px;height:22px;border-radius:30px;background:#fff9;animation:cloudPass 10s linear infinite}
+.kart-cloud-two{top:35%;animation-delay:-4s;transform:scale(.72)}
+.kart-hill{position:absolute;left:-10%;width:120%;border-radius:50% 50% 0 0}
+.kart-hill-back{bottom:14px;height:120px;background:#6eaa67;transform:rotate(5deg)}
+.kart-hill-front{bottom:-65px;height:125px;background:#367346;transform:rotate(-4deg)}
+.kart-cone{position:absolute;bottom:25%;font-size:34px;color:#ff9d3d;text-shadow:0 2px 0 #9d4b24;z-index:2;animation:coneBob 1s ease-in-out infinite alternate}
+.cone-one{left:19%}.cone-two{right:19%;animation-delay:.45s}
+@keyframes coneBob{to{transform:translateY(-5px) rotate(4deg)}}
+.go-kart{position:absolute;left:0;top:45%;width:120px;height:95px;z-index:4;animation:kartZigzag 4.8s cubic-bezier(.45,0,.55,1) infinite}
+.kart-driver{position:absolute;left:16px;top:0;font-size:62px;line-height:1;filter:drop-shadow(0 5px 3px #142a1e55);animation:kartBounce .28s ease-in-out infinite alternate}
+.kart-wheel{position:absolute;bottom:9px;width:24px;height:24px;border-radius:50%;background:#17232a;border:5px dotted #dbe0dc;box-shadow:inset 0 0 0 3px #6d7880;animation:wheelSpin .3s linear infinite}
+.wheel-left{left:18px}.wheel-right{left:79px}
+.kart-speedline{position:absolute;left:-42px;top:35px;width:42px;height:3px;background:#fffbd0;border-radius:4px;box-shadow:-10px -10px 0 -1px #fffbd0aa,-14px 10px 0 -1px #fffbd099;animation:speedStreak .3s ease-out infinite}
+@keyframes kartZigzag{0%{left:-140px;top:48%;transform:rotate(-5deg) scale(.85)}16%{left:20%;top:25%;transform:rotate(9deg) scale(.95)}32%{left:39%;top:62%;transform:rotate(-11deg) scale(1.02)}49%{left:56%;top:29%;transform:rotate(10deg) scale(1.05)}66%{left:70%;top:60%;transform:rotate(-8deg) scale(1)}83%{left:83%;top:35%;transform:rotate(7deg) scale(.94)}100%{left:110%;top:48%;transform:rotate(0deg) scale(.85)}}
+@keyframes kartBounce{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-3px) rotate(2deg)}}
+@keyframes wheelSpin{to{transform:rotate(360deg)}}
+@keyframes speedStreak{from{opacity:.9;transform:scaleX(1)}to{opacity:.15;transform:scaleX(.3)}}
+.kart-dust{position:absolute;bottom:30%;width:15px;height:15px;border:2px solid #e8f3df99;border-radius:50%;animation:kartDust .7s ease-out infinite}
+.dust-one{left:30%;animation-delay:.2s}.dust-two{left:45%;animation-delay:.55s}
+@keyframes kartDust{0%{transform:translate(0,0) scale(.5);opacity:.8}100%{transform:translate(-45px,-24px) scale(1.8);opacity:0}}
+.kart-caption{position:absolute;left:0;right:0;bottom:16px;text-align:center;font-weight:900;letter-spacing:.22em;font-size:11px;color:#fff;text-shadow:0 2px 8px #173b2b99;animation:captionFloat 1.3s ease-in-out infinite alternate}
 .transition-astronaut{background:radial-gradient(circle at 75% 22%,#4b5689 0%,#20274b 36%,#10172c 100%)}
 .space-star{position:absolute;color:#fff3b0;font-size:23px;animation:starTwinkle 1.5s ease-in-out infinite alternate}
 .star-a{left:16%;top:20%}.star-b{right:22%;top:44%;animation-delay:.5s}.star-c{left:65%;top:12%;animation-delay:1s}
@@ -258,6 +281,7 @@ function showHoleTransition(index){
   {cls:'transition-swing',label:'The Perfect Swing',art:'<div class="swing-sky"><span class="swing-sun"></span><span class="swing-cloud cloud-one"></span><span class="swing-cloud cloud-two"></span><div class="swing-hill"></div><div class="swing-hill hill-back"></div><div class="swing-golfer"><span class="golfer-head"></span><span class="golfer-body"></span><span class="golfer-arm"></span><span class="golfer-club"></span><span class="golfer-leg leg-one"></span><span class="golfer-leg leg-two"></span></div><span class="swing-ball"></span><span class="swing-trail"></span><span class="swing-label">PURE STRIKE</span></div>'},
   {cls:'transition-sheep',label:'Sheep on the Green',art:'<div class="sheep-scene"><span class="sheep-sun"></span><span class="sheep-cloud"></span><span class="sheep-flag">⚑</span><span class="sheep-animal">🐑</span><span class="sheep-ball"></span><span class="sheep-ripple"></span><div class="sheep-grass"></div><span class="sheep-caption">BAAA-IRDIE!</span></div>'},
   {cls:'transition-kegstand',label:'The 19th Hole Keg Stand',art:'<div class="keg-scene"><span class="keg-lights"></span><span class="keg-star keg-star-one">✦</span><span class="keg-star keg-star-two">✧</span><div class="keg-platform"></div><div class="party-person"><span class="party-head">😎</span><span class="party-body"></span><span class="party-arm party-arm-left"></span><span class="party-arm party-arm-right"></span><span class="party-leg party-leg-left"></span><span class="party-leg party-leg-right"></span></div><div class="party-keg"><span class="keg-band"></span><span class="keg-tap"></span><span class="keg-foam"></span></div><span class="keg-bubble bubble-one">✦</span><span class="keg-bubble bubble-two">✧</span><span class="keg-caption">THE 19TH HOLE</span></div>'},
+  {cls:'transition-kart',label:'Karting Across the Fairway',art:'<div class="kart-scene"><span class="kart-sun"></span><span class="kart-cloud kart-cloud-one"></span><span class="kart-cloud kart-cloud-two"></span><div class="kart-hill kart-hill-back"></div><div class="kart-hill kart-hill-front"></div><span class="kart-cone cone-one">▲</span><span class="kart-cone cone-two">▲</span><span class="kart-dust dust-one"></span><span class="kart-dust dust-two"></span><div class="go-kart"><span class="kart-driver">🏎️</span><span class="kart-wheel wheel-left"></span><span class="kart-wheel wheel-right"></span><span class="kart-speedline"></span></div><span class="kart-caption">ZIG. ZAG. SEND IT.</span></div>'},
   {cls:'transition-astronaut',label:'Out of This World',art:'<div class="space-scene"><span class="space-star star-a">✦</span><span class="space-star star-b">✧</span><span class="space-star star-c">✦</span><span class="space-planet"></span><span class="space-moon"></span><span class="space-astronaut">🧑‍🚀</span><span class="space-ball">⛳</span><span class="space-orbit"></span><span class="space-caption">AIM FOR THE GALAXY</span></div>'}
  ];
  const scene=scenes[Math.floor(Math.random()*scenes.length)];
