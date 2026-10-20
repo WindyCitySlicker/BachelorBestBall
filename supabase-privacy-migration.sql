@@ -28,5 +28,10 @@ alter table public.tournament_state enable row level security;
 revoke all on public.tournament_state from anon, authenticated;
 grant all on public.tournament_state to service_role;
 
+-- Remove legacy browser-side codes from the persisted state while preserving all scores/handicaps.
+update public.tournament_state
+set state = state - 'adminCode' - 'accessCodes'
+where id = 'irish-course-invitational';
+
 -- Do not grant anon/authenticated access to tournament_sessions or tournament_state.
 -- The Edge Function uses SUPABASE_SERVICE_ROLE_KEY server-side and validates each session.
