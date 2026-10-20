@@ -1,0 +1,4 @@
+[functions.tournament-api]
+# The function validates its own opaque session tokens and the initial invite code.
+# Disable platform JWT verification so the first-time code-verification request can reach it.
+verify_jwt = false
