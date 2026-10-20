@@ -59,9 +59,9 @@ body:not(.authorized) #adminPage,body:not(.authorized) #scoring{display:none!imp
 <script>
 /* Storage resilience: Safari/private modes can deny sessionStorage. Keep the app usable in-memory if so. */
 const __iciMemoryStore = Object.create(null);
-function safeSessionGet(key){try{return window.safeSessionGet(key)}catch(e){return Object.prototype.hasOwnProperty.call(__iciMemoryStore,key)?__iciMemoryStore[key]:null}}
-function safeSessionSet(key,value){const text=String(value);__iciMemoryStore[key]=text;try{window.safeSessionSet(key,text)}catch(e){}}
-function safeSessionRemove(key){delete __iciMemoryStore[key];try{window.safeSessionRemove(key)}catch(e){}}
+function safeSessionGet(key){try{return window.sessionStorage.getItem(key)}catch(e){return Object.prototype.hasOwnProperty.call(__iciMemoryStore,key)?__iciMemoryStore[key]:null}}
+function safeSessionSet(key,value){const text=String(value);__iciMemoryStore[key]=text;try{window.sessionStorage.setItem(key,text)}catch(e){}}
+function safeSessionRemove(key){delete __iciMemoryStore[key];try{window.sessionStorage.removeItem(key)}catch(e){}}
 window.addEventListener('error',function(){try{const el=document.getElementById('startupNotice');if(el)return;const n=document.createElement('div');n.id='startupNotice';n.setAttribute('role','status');n.style.cssText='position:sticky;top:0;z-index:2000;padding:10px 14px;background:#7d352a;color:#fff;font-weight:700;font-size:13px';n.textContent='Some tournament features did not finish loading. The public page remains available; refresh once or try another browser tab.';document.querySelector('.shell')?.prepend(n)}catch(e){}});
 window.addEventListener('unhandledrejection',function(){try{const el=document.getElementById('startupNotice');if(el)return;const n=document.createElement('div');n.id='startupNotice';n.setAttribute('role','status');n.style.cssText='position:sticky;top:0;z-index:2000;padding:10px 14px;background:#7d352a;color:#fff;font-weight:700;font-size:13px';n.textContent='A background tournament request failed. You can still use the landing page and retry sign-in.';document.querySelector('.shell')?.prepend(n)}catch(e){}});
 const STORE_KEY='irishCourseInvitational_v1';
