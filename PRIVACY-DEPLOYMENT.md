@@ -14,14 +14,14 @@ The current live website remains on `main`. A privacy-ready front-end is staged 
 
 ## Supabase Dashboard steps
 1. In Supabase, open **Edge Functions** and create a function named `tournament-api`.
-2. Copy `supabase/functions/tournament-api/index.ts` into its editor and deploy it.
+2. Copy `supabase/functions/tournament-api/index.ts` into its editor and deploy it. In the function settings, turn **Verify JWT** off for this function (the function validates its own one-time code verification and expiring session token). The repo also includes this setting in `supabase/config.toml`.
 3. Open the function's **Secrets** settings and add:
    - `FOURSOME_1_CODE` = the new code for Foursome 1
    - `FOURSOME_2_CODE` = the new code for Foursome 2
    - `FOURSOME_3_CODE` = the new code for Foursome 3
    - `ADMIN_CODE` = a new, strong admin code
    Use new codes rather than reusing the old browser-exposed codes.
-4. Test the function's `verify` action with each code before changing database policies. Do not share service-role keys or put them in website code.
+4. Test the function's `verify` action with each code before changing database policies. Do not share service-role keys or put them in website code. The website sends only the public publishable key; the service-role key stays in Supabase.
 5. The updated front end is staged in the `privacy-cutover` branch / pull request. Once the Edge Function and secrets are tested, merge that branch to `main`, then immediately take a database backup and run `supabase-privacy-migration.sql` in **SQL Editor**. This migration preserves scores and handicaps, removes old access-code fields from stored JSON, and revokes anonymous table access.
 6. Test on two phones: unauthorized visitors should not see scores; each group can update its own scores only; another group's scores and all handicaps stay unchanged; admin can edit handicaps and reset scores only.
 
