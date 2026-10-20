@@ -363,7 +363,7 @@ function showHoleTransition(index){
 $('#landingFullScorecard').addEventListener('click',e=>{e.preventDefault();openTilePage('fullScorecard')});
 function openTilePage(page){hidePrivatePages();$('#fullScorecardPage').style.display='none';$('#holesTakenPage').style.display='none';$('#mainColumns').style.display='';document.body.classList.add('tile-page-mode','tile-page-'+page);if(page==='fullScorecard')renderFullScorecard(1);if(page==='holesTaken')renderHolesTaken();if(page==='leaderboard'){renderLeaderboard();renderLiveScoreTracker()}const transition=$('#holeTransition');if(transition)transition.classList.remove('visible');window.scrollTo({top:0,behavior:'auto'});}
 $('#landingCourseInfo')?.addEventListener('click',e=>{e.preventDefault();openTilePage('courseGuide')});
-$('#closeFullScorecard').addEventListener('click',()=>{$('#fullScorecardPage').style.display='none';window.scrollTo({top:0,behavior:'smooth'})});
+$('#closeFullScorecard').addEventListener('click',()=>{hidePrivatePages();$('#fullScorecardPage').style.display='none';$('#holesTakenPage').style.display='none';$('#mainColumns').style.display='';window.scrollTo({top:0,behavior:'auto'})});
 $('#landingKeepScore').addEventListener('click',e=>{e.preventDefault();$('#keepScoreBtn').click()});
 $('#landingLeaderboard').addEventListener('click',e=>{e.preventDefault();openTilePage('leaderboard')});
 $('#landingHolesTaken').addEventListener('click',e=>{e.preventDefault();openTilePage('holesTaken')});
