@@ -97,6 +97,18 @@ Deno.serve(async (req) => {
       return json({ state: cleanState(data.state), updated_at: data.updated_at, role: session.role, groupId: session.group_id });
     }
 
+    if (action === "rename_group") {
+      if (session.role !== "group" || !session.group_id) return json({ error: "Foursome access required." }, 403);
+      const name = String(body.name || "").trim().slice(0, 35);
+      if (name.length < 2) return json({ error: "Team name must be at least 2 characters." }, 400);
+      const data = await getState();
+      const current = data.state;
+      const group = current.groups?.find((g: any) => Number(g.id) === Number(session.group_id));
+      if (!group) return json({ error: "Foursome not found." }, 404);
+      group.name = name;
+      const updated_at = await saveState(current);
+      return json({ ok: true, name, updated_at });
+    }
     if (action === "save_group") {
       if (session.role !== "group" || !session.group_id) return json({ error: "Foursome access required." }, 403);
       const incomingScores = body.playerScores;
