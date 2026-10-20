@@ -1,6 +1,6 @@
 # Irish Course Invitational privacy-first cutover
 
-The current website remains live until the secure backend is deployed and tested. Do not run the SQL migration before the Edge Function is deployed/configured, or the existing client will lose database access.
+The current live website remains on `main`. A privacy-ready front-end is staged on the `privacy-cutover` branch and must not be merged until the Edge Function is deployed and its secrets are configured. Do not run the SQL migration before the front end is switched to the Edge Function, or the existing client will lose database access.
 
 ## What this change prepares
 - Access codes move into Supabase Edge Function secrets rather than browser JavaScript.
@@ -22,8 +22,8 @@ The current website remains live until the secure backend is deployed and tested
    - `ADMIN_CODE` = a new, strong admin code
    Use new codes rather than reusing the old browser-exposed codes.
 4. Test the function's `verify` action with each code before changing database policies. Do not share service-role keys or put them in website code.
-5. Only after the front end has been switched to this API, take a database backup and run `supabase-privacy-migration.sql` in **SQL Editor**.
+5. The updated front end is staged in the `privacy-cutover` branch / pull request. Once the Edge Function and secrets are tested, merge that branch to `main`, then immediately take a database backup and run `supabase-privacy-migration.sql` in **SQL Editor**. This migration preserves scores and handicaps, removes old access-code fields from stored JSON, and revokes anonymous table access.
 6. Test on two phones: unauthorized visitors should not see scores; each group can update its own scores only; another group's scores and all handicaps stay unchanged; admin can edit handicaps and reset scores only.
 
 ## Important
-This is a prepared backend, not an activated privacy cutover. The current website is still using its old public-access pattern until the front end is connected to the function and the migration is run. Do not run the SQL migration early, because that would break live scoring.
+This is a staged privacy cutover, not yet active on the public website. Until the pull request is merged and the SQL migration is run, the live `main` website still uses the legacy public-access pattern. Do not run the SQL migration early, because that would break live scoring.
