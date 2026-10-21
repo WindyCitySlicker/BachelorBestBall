@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#10291f">
-<title>Irish Course Invitational · Whistling Straits</title>
+<title>Whistling Irish Invitational · Golf Weekend</title>
 <style>
 :root{--ink:#f4f1e7;--muted:#b6c4b7;--forest:#10291f;--deep:#0a1c15;--panel:#18372a;--panel2:#204432;--line:#365746;--lime:#c7d99a;--gold:#d8b86a;--sand:#e8d7ad;--red:#ef9b8c;--shadow:0 18px 44px #07140e66}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#a9c6c4 0%,#e3d9b9 27%,#668a61 48%,#234b34 67%,#0a1c15 100%);background-attachment:fixed;color:var(--ink);font:15px/1.5 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;position:relative}body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 84% 17%,#fff0c566 0%,transparent 24%),radial-gradient(ellipse at 12% 41%,#7b9d685c 0%,transparent 27%),radial-gradient(ellipse at 70% 50%,#c8d09a44 0%,transparent 30%),linear-gradient(166deg,transparent 0 34%,#385d3c 34.2% 40%,transparent 40.2%),linear-gradient(12deg,transparent 0 40%,#6b8a56 40.2% 48%,transparent 48.2%),linear-gradient(173deg,transparent 0 49%,#244c33 49.2% 57%,transparent 57.2%),linear-gradient(8deg,transparent 0 57%,#153c29 57.2% 67%,transparent 67.2%)}
@@ -206,10 +206,27 @@ button,input{font:inherit}button{cursor:pointer}.shell{max-width:1180px;margin:a
 .brand strong{color:#fff9e8}
 .navtag{color:#f2d98f;border-color:#9aae83}
 @media(max-width:560px){.nav{padding:10px;border-radius:13px}}
+/* Header spacing and alignment: generous tap targets and clean wrapping on iPhone. */
+.nav{gap:18px;padding:16px 18px}
+.brand{min-width:0;flex:1;gap:13px}
+.brand>div:last-child{min-width:0}
+.brand small{line-height:1.5;margin-bottom:4px}
+.brand strong{display:block;line-height:1.2}
+.nav-actions{flex-shrink:0;gap:10px}
+.nav-actions .btn{min-height:44px;padding:11px 17px;white-space:nowrap}
+@media(max-width:600px){
+  .nav{align-items:stretch;flex-direction:column;gap:17px;padding:17px 15px;margin-bottom:18px}
+  .brand{width:100%;gap:12px}
+  .mark{width:46px;height:46px;flex:0 0 46px}
+  .brand small{font-size:10px;letter-spacing:.14em;margin-bottom:5px}
+  .brand strong{font-size:clamp(17px,4.7vw,21px);line-height:1.2;overflow-wrap:anywhere}
+  .nav-actions{display:flex;width:100%;gap:10px;align-items:stretch}
+  .nav-actions .btn{flex:1;min-width:0;min-height:48px;padding:12px 10px;font-size:14px;border-radius:11px}
+}
 </style>
 </head>
 <body><button type="button" class="floating-nav-button home-icon-button" id="globalHomeButton" aria-label="Go to home screen" title="Home">⌂</button><button type="button" class="floating-nav-button leaderboard-icon-button" id="globalLeaderboardButton" aria-label="Go to live leaderboard" title="Leaderboard">▤</button><button type="button" class="floating-nav-button scorekeeper-icon-button" id="globalScorekeeperButton" aria-label="Open scorekeeping" title="Keep Score">✎</button><main class="shell">
-<header class="nav"><div class="brand"><div class="mark">W</div><div><small>Golf weekend · Wisconsin</small><strong>Irish Course Invitational</strong></div></div><div class="nav-actions"><div class="navtag">Whistling Straits · 18 holes</div><button class="btn primary" id="keepScoreBtn">Keep Score</button><button class="btn ghost" id="adminBtn">Admin</button><button class="btn ghost" id="exitScoreBtn" style="display:none">Exit</button></div></header>
+<header class="nav"><div class="brand"><div class="mark">W</div><div><small>Golf weekend · Wisconsin</small><strong>Whistling Irish Invitational</strong></div></div><div class="nav-actions"><button class="btn primary" id="keepScoreBtn">Keep Score</button><button class="btn ghost" id="adminBtn">Admin</button><button class="btn ghost" id="exitScoreBtn" style="display:none">Exit</button></div></header>
 <section class="hero"><div class="hero-icons" aria-hidden="true"><span>♧</span><span>⛳</span><span>🏌️</span><span>◉</span></div><div class="kicker">✦ Links golf · Lake Michigan shoreline ✦</div><h1>Find your line.<br><em>Own the Irish.</em></h1><p>Follow the tournament leaderboard, record scores, and review each foursome’s best net ball throughout the round.</p><div class="herofoot"><span class="chip"><b>01</b> ◷ One round</span><span class="chip"><b>18</b> ⛳ Holes</span><span class="chip"><b>04</b> ♙ Teams</span><span class="chip">♜ Lowest net total wins</span></div><div class="hero-signoff" aria-hidden="true">WHISTLING STRAITS · IRISH COURSE <span>✦</span></div><div class="home-transition-stage" id="homeTransitionStage" aria-label="Rotating animated golf scenes"><div class="transition-art transition-ufo" id="homeTransitionArt" role="img" aria-label="Animated UFO abducting a golf ball"><div class="ufo-scene"><span class="ufo-moon"></span><span class="ufo-stars">✦　✧　✦　✧</span><div class="ufo-ship"><span class="ufo-dome"></span><span class="ufo-disc"></span><span class="ufo-light light-a"></span><span class="ufo-light light-b"></span><span class="ufo-light light-c"></span></div><div class="ufo-beam"></div><span class="ufo-ball">⛳</span><span class="ufo-caption">THEY CAME FOR OUR BALLS</span></div></div><div class="home-transition-caption"><span id="homeTransitionTitle">UFO: UNIDENTIFIED FAIRWAY OBJECT</span><span>WHISTLING STRAITS · IRISH COURSE</span></div></div></section>
 <section class="landing-tiles" aria-label="Tournament shortcuts">
 <a class="landing-tile" href="#scoring" id="landingKeepScore"><span class="tile-icon" aria-hidden="true">⛳</span><strong>Keep Score</strong><span>Record scores for your group</span><i>Open scorecard →</i></a>
