@@ -426,15 +426,25 @@ function openFullScorecard(){const page=$('#fullScorecardPage');page.style.displ
 $('#leaderboardFullScorecardBtn').addEventListener('click',()=>openTilePage('fullScorecard'));
 function renderAwards(){
  const entries=state.groups.flatMap(g=>g.players.map((name,p)=>({name,group:g.name,scores:g.playerScores[p],handicap:g.handicaps[p]})));
- const maxAward=(title,icon,detail,values,fmt=v=>String(v))=>{const max=Math.max(0,...values.map(x=>x.score));const leaders=max?values.filter(x=>x.score===max):[];return '<div class="award-card"><div class="award-icon">'+icon+'</div><div><div class="award-name">'+title+'</div><div class="award-detail">'+detail+'</div><div class="award-leader">'+(leaders.length?leaders.map(x=>escapeHTML(x.name)+' · '+fmt(x)).join(' / '):'Awaiting scores')+'</div></div></div>'};
- const gross=[] ,netBirdies=[],grossBirdies=[];
- entries.forEach(p=>p.scores.forEach((v,h)=>{if(v===''||!Number.isFinite(Number(v))||Number(v)<1)return;gross.push({name:p.name,score:Number(v),hole:h+1});if(Number(v)-strokesOnHole(p.handicap,h)<=HOLES[h].par-1)netBirdies.push({name:p.name,score:netBirdies.filter(x=>x.name===p.name).length+1});if(Number(v)===HOLES[h].par-1)grossBirdies.push({name:p.name,score:grossBirdies.filter(x=>x.name===p.name).length+1})}));
- const countByPlayer=arr=>entries.map(p=>({name:p.name,score:arr.filter(x=>x.name===p.name).length}));
- const highGross=Math.max(0,...gross.map(x=>x.score)),blowUps=highGross?gross.filter(x=>x.score===highGross).map(x=>({name:x.name,score:x.score,hole:x.hole})).map(x=>({...x,display:x.score+' on hole '+x.hole})): [];
+ const maxAward=(title,icon,detail,values,fmt=v=>String(v.score))=>{const max=Math.max(0,...values.map(x=>Number(x.score)||0));const leaders=max?values.filter(x=>(Number(x.score)||0)===max):[];return '<div class="award-card"><div class="award-icon">'+icon+'</div><div><div class="award-name">'+title+'</div><div class="award-detail">'+detail+'</div><div class="award-leader">'+(leaders.length?leaders.map(x=>escapeHTML(x.name)+' · '+escapeHTML(String(fmt(x)))).join(' / '):'Awaiting scores')+'</div></div></div>'};
+ const gross=[],netBirdieCounts={},grossBirdieCounts=[];
+ entries.forEach(p=>p.scores.forEach((v,h)=>{
+  if(v===''||v===null||v===undefined)return;
+  const score=Number(v);
+  if(!Number.isFinite(score)||score<1)return;
+  gross.push({name:p.name,score,hole:h+1});
+  const par=Number(HOLES[h].par);
+  const net=score-strokesOnHole(p.handicap,h);
+  if(net===par-1)netBirdieCounts[p.name]=(netBirdieCounts[p.name]||0)+1;
+  if(score===par-1)grossBirdieCounts.push({name:p.name,score:1});
+ }));
+ const countByPlayer=counts=>entries.map(p=>({name:p.name,score:counts[p.name]||0}));
+ const highGross=Math.max(0,...gross.map(x=>x.score));
+ const blowUps=highGross?gross.filter(x=>x.score===highGross).map(x=>({...x,display:x.score+' on hole '+x.hole})):[];
  $('#golfAwards').innerHTML=[
- maxAward('Blow-Up King','💥','Highest gross score on one hole',blowUps,x=>x.display||x.score),
- maxAward('Net Birdie Machine','🐦','Most individual net birdies',countByPlayer(netBirdies)),
- maxAward('Purest Swing','🎯','Most gross birdies',countByPlayer(grossBirdies))
+  maxAward('Blow-Up King','💥','Highest gross score on one hole',blowUps,x=>x.display||x.score),
+  maxAward('Net Birdie Machine','🐦','Most individual net birdies',countByPlayer(netBirdieCounts)),
+  maxAward('Purest Swing','🎯','Most gross birdies',countByPlayer(grossBirdieCounts.reduce((a,x)=>(a[x.name]=(a[x.name]||0)+1,a),{})))
  ].join('');
  const defs=[{key:'beers',title:'🍺 On-course beers'},{key:'lostBalls',title:'⚪ Lost balls'},{key:'fescueFinds',title:'🌾 Balls found in fescue'}];
  $('#selfReportedAwards').innerHTML=defs.map(d=>'<div class="self-award-card"><div class="self-award-title">'+d.title+'</div><div class="award-leader" style="margin-bottom:8px">'+awardLeaders(d.key)+'</div>'+entries.map(x=>'<div class="self-award-row"><div class="self-award-name">'+escapeHTML(x.name)+'</div><div class="self-award-controls"><button type="button" data-award="'+d.key+'" data-player="'+escapeHTML(x.name)+'" data-delta="-1" aria-label="Decrease '+escapeHTML(x.name)+' '+d.key+'">−</button><span class="self-award-count">'+(Number(state.selfReportedAwards?.[d.key]?.[x.name])||0)+'</span><button type="button" data-award="'+d.key+'" data-player="'+escapeHTML(x.name)+'" data-delta="1" aria-label="Increase '+escapeHTML(x.name)+' '+d.key+'">+</button></div></div>').join('')+'<div class="self-award-note">Self-reported · editable by everyone</div></div>').join('');
