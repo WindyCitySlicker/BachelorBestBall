@@ -438,10 +438,12 @@ const HOLES=[
 {yardage:501,par:5,si:14,name:'Devil’s Elbow'},
 {yardage:135,par:3,si:16,name:'Mulligan’s Walk',note:'Closest to the pin'},
 {yardage:344,par:4,si:12,name:'Rolling Hills'},
-{yardage:501,par:5,si:10,name:'Garden Creek'},
+{yardage:501,par:5,si:10,name:'Garden Creek',note:'Longest drive'},
+
 {yardage:322,par:4,si:8,name:'Lost Gorse'},
 {yardage:378,par:4,si:5,name:'Shepherd’s Post'},
-{yardage:177,par:3,si:15,name:'Lamb Chop'},
+{yardage:177,par:3,si:15,name:'Lamb Chop',note:'Closest to the pin'},
+
 {yardage:373,par:4,si:13,name:'Highland Trek'},
 {yardage:152,par:3,si:17,name:'Blind Man’s Bluff'},
 {yardage:508,par:5,si:11,name:'Tullamore Dew',note:'Longest drive'},
@@ -565,12 +567,12 @@ function showHoleTransition(index){
   {cls:'transition-tornado',label:'FORE! THE GOLF BALLNADO',art:'<div class="tornado-scene"><span class="tornado-cloud">☁ ☁ ☁</span><span class="tornado-funnel"></span><span class="tornado-ball ball-a">⚪</span><span class="tornado-ball ball-b">⚪</span><span class="tornado-ball ball-c">⚪</span><span class="tornado-ball ball-d">⚪</span><span class="tornado-ball ball-e">⚪</span><span class="tornado-ground"></span><span class="tornado-caption">PLEASE KEEP CARTS ON PATHS</span></div>'},
   {cls:'transition-monster-cart',label:'CART SMASH: FAIRWAY EDITION',art:'<div class="monster-cart-scene"><span class="monster-sun"></span><span class="monster-cloud"></span><div class="monster-hill"></div><div class="monster-truck"><span class="monster-flame">🔥</span><span class="monster-cab">🏎️</span><span class="monster-wheel monster-wheel-a">✹</span><span class="monster-wheel monster-wheel-b">✹</span><span class="monster-golfbag">⛳</span></div><span class="monster-dust dust-a"></span><span class="monster-dust dust-b"></span><span class="monster-cart-caption">CART PATH? NEVER HEARD OF IT.</span></div>'}
  ];
- const contest=index===5?'pin':index===13?'drive':null;
+ const contest=[5,10].includes(index)?'pin':[7,13].includes(index)?'drive':null;
  const contestScenes={
   pin:{cls:'contest-transition-art contest-transition-pin',label:'CLOSEST TO THE PIN · HOLE 6',art:'<div class="contest-animation contest-pin-animation"><div class="contest-sky-glow"></div><div class="contest-target-ring ring-outer"></div><div class="contest-target-ring ring-middle"></div><div class="contest-target-ring ring-inner"></div><div class="contest-flagpole"><span class="contest-flag"></span></div><div class="contest-flight-ball"></div><div class="contest-art-kicker">🎯 CLOSEST TO THE PIN</div><div class="contest-art-subtitle">STICK IT TIGHT</div><div class="contest-art-number">HOLE 06</div></div>'},
   drive:{cls:'contest-transition-art contest-transition-drive',label:'LONGEST DRIVE · HOLE 14',art:'<div class="contest-animation contest-drive-animation"><div class="contest-drive-sun"></div><div class="contest-fairway"></div><div class="contest-drive-line drive-line-one"></div><div class="contest-drive-line drive-line-two"></div><div class="contest-drive-ball">⚪</div><div class="contest-drive-flare"></div><div class="contest-art-kicker">💥 LONGEST DRIVE</div><div class="contest-art-subtitle">LET IT FLY</div><div class="contest-art-number">HOLE 14</div></div>'}
  };
- const scene=contest?contestScenes[contest]:scenes[Math.floor(Math.random()*scenes.length)];
+ const scene=contest?{...contestScenes[contest],label:contestScenes[contest].label.replace(/HOLE (?:6|14)/,'HOLE '+(index+1)),art:contestScenes[contest].art.replace(/HOLE (?:06|14)/,'HOLE '+String(index+1).padStart(2,'0'))}:scenes[Math.floor(Math.random()*scenes.length)];
  overlay.innerHTML='<div class="hole-transition-card"><div class="transition-art '+scene.cls+'" aria-label="'+scene.label+'" role="img">'+scene.art+'</div><div class="hole-transition-copy"><div class="hole-transition-kicker">Moving to hole '+(index+1)+' of 18</div><div class="hole-transition-title">'+escapeHTML(h.name||'The Irish Course')+'</div><div class="hole-transition-meta">PAR '+h.par+' &nbsp; · &nbsp; '+h.yardage+' YARDS &nbsp; · &nbsp; STROKE INDEX '+h.si+'</div><div class="hole-transition-hint">'+(contest?(contest==='pin'?'🎯 Closest to the Pin contest · take aim.':'💥 Longest Drive contest · unleash the big one.'):'Ready for the next hole?')+'</div><button type="button" class="btn primary full" id="continueHoleBtn" style="margin-top:16px">Continue to scorecard →</button></div></div>';
  overlay.classList.add('visible');
  $('#continueHoleBtn').onclick=()=>{overlay.classList.remove('visible')};
