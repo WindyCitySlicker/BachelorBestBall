@@ -300,6 +300,28 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom))}
 .keep-score-featured:hover{transform:translateY(-2px);border-color:#f2d98f;box-shadow:0 16px 32px #07140e85}
 @media(max-width:420px){.top-action-tiles .keep-score-featured,.top-action-tiles .admin-featured{gap:7px;padding:10px;min-height:80px}.top-action-tiles .keep-score-featured .tile-icon,.top-action-tiles .admin-featured .tile-icon{flex-basis:32px;width:32px;height:32px;font-size:18px}.top-action-tiles .keep-score-featured strong,.top-action-tiles .admin-featured strong{font-size:14px}.top-action-tiles .keep-score-copy>span{font-size:9px}.top-action-tiles i{font-size:8px}.keep-score-featured{margin-left:6px;margin-right:6px;gap:11px;padding:13px;min-height:82px}.keep-score-featured .tile-icon{flex-basis:44px;width:44px;height:44px;font-size:23px}.keep-score-featured strong{font-size:16px}.keep-score-featured .keep-score-copy>span{font-size:11px}.keep-score-featured i{font-size:10px}}
 
+
+/* Compact four-player score cube: keep all golfers visible with minimal scrolling. */
+#scorecard .player-scores{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:stretch}
+#scorecard .player-score{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name name" "strokes strokes" "entry net" "taken taken";align-content:start;align-items:center;gap:5px 8px;min-width:0;padding:10px;border-radius:12px}
+#scorecard .player-score-title{grid-area:name;min-width:0;font-size:clamp(11px,3.2vw,14px);line-height:1.2;overflow-wrap:anywhere}
+#scorecard .player-score>.stroke-explain:not([data-player-taken]){grid-area:strokes;min-height:12px;font-size:10px;line-height:1.2}
+#scorecard .player-score input{grid-area:entry;width:100%;min-width:0;min-height:46px;height:46px;padding:6px;border-radius:9px;font-size:22px}
+#scorecard .player-score .net-result{grid-area:net;min-width:48px;min-height:32px;margin:0;padding:4px 7px;text-align:center;white-space:nowrap;font-size:11px}
+#scorecard .player-score [data-player-taken]{grid-area:taken;margin:0;font-size:10px;line-height:1.2}
+#scorecard .hole{padding:12px}
+#scorecard .holehead{margin-bottom:8px}
+#scorecard .holefoot{margin:4px 0 8px}
+@media(max-width:420px){
+ #scorecard .player-scores{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ #scorecard .player-score{padding:8px;gap:5px 6px}
+ #scorecard .player-score-title{font-size:11px}
+ #scorecard .player-score input{min-height:44px;height:44px;font-size:21px}
+ #scorecard .player-score .net-result{min-width:42px;padding:4px 5px;font-size:10px}
+ #scorecard .player-score>.stroke-explain:not([data-player-taken]){font-size:9px}
+ #scorecard .player-score [data-player-taken]{font-size:9px}
+}
+
 </style>
 </head>
 <body><nav class="bottom-nav" id="bottomNav" aria-label="Main navigation"><button type="button" class="bottom-nav-item active" data-bottom-nav="home" id="globalHomeButton" aria-label="Home"><span class="bottom-nav-icon" aria-hidden="true">⌂</span><span>Home</span></button><button type="button" class="bottom-nav-item" data-bottom-nav="leaderboard" id="globalLeaderboardButton" aria-label="Live leaderboard"><span class="bottom-nav-icon" aria-hidden="true">▤</span><span>Leaderboard</span></button><button type="button" class="bottom-nav-item" data-bottom-nav="scorecard" id="globalScorecardButton" aria-label="Full scorecard"><span class="bottom-nav-icon" aria-hidden="true">▦</span><span>Scorecard</span></button><button type="button" class="bottom-nav-item" data-bottom-nav="account" id="globalScorekeeperButton" aria-label="Keep Score"><span class="bottom-nav-icon" aria-hidden="true">✎</span><span>Keep Score</span></button></nav><main class="shell">
